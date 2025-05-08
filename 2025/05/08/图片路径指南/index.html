@@ -32,7 +32,7 @@
 <meta property="og:image" content="https://xingdayup.github.io/image/%E5%9B%BE%E7%89%87%E8%B7%AF%E5%BE%84%E6%8C%87%E5%8D%97/image-20250508212209100.png">
 <meta property="og:image" content="https://xingdayup.github.io/image/%E5%9B%BE%E7%89%87%E8%B7%AF%E5%BE%84%E6%8C%87%E5%8D%97/image-20250508211431308.png">
 <meta property="article:published_time" content="2025-05-08T12:37:13.000Z">
-<meta property="article:modified_time" content="2025-05-08T13:43:42.029Z">
+<meta property="article:modified_time" content="2025-05-08T14:04:23.934Z">
 <meta property="article:author" content="Jesse Chen">
 <meta property="article:tag" content="原创">
 <meta property="article:tag" content="Hexo">
@@ -248,7 +248,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          428 words
+          422 words
         
       </span>
     
@@ -312,7 +312,7 @@
                 
                 <p>在 Hexo 博客的日常维护中，图片路径管理无疑是一项既重要又时常引发困扰的任务。如何在本地使用 Typora 流畅写作，同时确保 Hexo 生成站点时图片链接准确无误，是许多博主追求的目标。本文旨在提供一种清晰的思路和实战方法，利用 Typora 的特性，配合合理的 Hexo 图片组织方式，实现“一次配置，长久省心”的图片管理体验。</p>
 <hr>
-<h2 id="痛点回顾：Hexo-图片路径为何令人迷惑？"><a href="#痛点回顾：Hexo-图片路径为何令人迷惑？" class="headerlink" title="痛点回顾：Hexo 图片路径为何令人迷惑？"></a>痛点回顾：Hexo 图片路径为何令人迷惑？</h2><p>Hexo 提供了 <code>post_asset_folder: true</code> 的配置，允许将图片与文章存放在同一文章名下的子文件夹中，并通过相对路径引用。</p>
+<h2 id="痛点回顾：Hexo-图片路径为何令人迷惑？"><a href="#痛点回顾：Hexo-图片路径为何令人迷惑？" class="headerlink" title="痛点回顾：Hexo 图片路径为何令人迷惑？"></a>痛点回顾：Hexo 图片路径为何令人迷惑？</h2><p>Hexo 提供了 <code>post_asset_folder: true</code> 的配置，允许将图片存放在与文章同名文件夹中，并通过相对路径引用。</p>
 <p><img src="/../image/%E5%9B%BE%E7%89%87%E8%B7%AF%E5%BE%84%E6%8C%87%E5%8D%97/image-20250508205137298.png" srcset="/img/loading.gif" lazyload alt="fig.1"></p>
 <p>但是<code>hexo g</code>后，会发现，图片与由<code>.md</code>转化而来的<code>HTML</code>文件竟然在同一文件夹下，以至于原本设置好的相对路径无法使用，如图2：</p>
 <p><img src="/../image/%E5%9B%BE%E7%89%87%E8%B7%AF%E5%BE%84%E6%8C%87%E5%8D%97/image-20250508211015878.png" srcset="/img/loading.gif" lazyload alt="fig.2"></p>
