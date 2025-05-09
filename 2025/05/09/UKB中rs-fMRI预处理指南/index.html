@@ -19,18 +19,18 @@
   <meta name="author" content="Jesse Chen">
   <meta name="keywords" content="">
   
-    <meta name="description" content="UKBiobank静息态功能磁共振数据预处理指南（一）数据介绍依据UK Biobank官方mri数据介绍文件：brain_mri.pdf：  协议下面图片中文字来自于上述文件，是对英国生物银行 (UK Biobank) 项目中静息态功能性磁共振成像 (Resting-state functional MRI, rsfMRI) 采集参数和相关参考扫描的详细说明。  以下是各项参数的解释：  Reso">
+    <meta name="description" content="数据介绍依据UK Biobank官方mri数据介绍文件：brain_mri.pdf：  协议下面图片中文字来自于上述文件，是对英国生物银行 (UK Biobank) 项目中静息态功能性磁共振成像 (Resting-state functional MRI, rsfMRI) 采集参数和相关参考扫描的详细说明。  以下是各项参数的解释：  Resolution: 2.4x2.4x2.4 mm  含义：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UKB中rs-fMRI预处理指南">
+<meta property="og:title" content="UKB中rs-fMRI预处理指南（一）">
 <meta property="og:url" content="https://xingdayup.github.io/2025/05/09/UKB%E4%B8%ADrs-fMRI%E9%A2%84%E5%A4%84%E7%90%86%E6%8C%87%E5%8D%97/index.html">
 <meta property="og:site_name" content="ChenJinxing&#39;s Blog">
-<meta property="og:description" content="UKBiobank静息态功能磁共振数据预处理指南（一）数据介绍依据UK Biobank官方mri数据介绍文件：brain_mri.pdf：  协议下面图片中文字来自于上述文件，是对英国生物银行 (UK Biobank) 项目中静息态功能性磁共振成像 (Resting-state functional MRI, rsfMRI) 采集参数和相关参考扫描的详细说明。  以下是各项参数的解释：  Reso">
+<meta property="og:description" content="数据介绍依据UK Biobank官方mri数据介绍文件：brain_mri.pdf：  协议下面图片中文字来自于上述文件，是对英国生物银行 (UK Biobank) 项目中静息态功能性磁共振成像 (Resting-state functional MRI, rsfMRI) 采集参数和相关参考扫描的详细说明。  以下是各项参数的解释：  Resolution: 2.4x2.4x2.4 mm  含义：">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://xingdayup.github.io/image/UKB%E4%B8%ADrs-fMRI%E9%A2%84%E5%A4%84%E7%90%86%E6%8C%87%E5%8D%97/image-20250509171713847.png">
 <meta property="og:image" content="https://xingdayup.github.io/image/UKB%E4%B8%ADrs-fMRI%E9%A2%84%E5%A4%84%E7%90%86%E6%8C%87%E5%8D%97/image-20250509171837507.png">
 <meta property="og:image" content="https://xingdayup.github.io/image/UKB%E4%B8%ADrs-fMRI%E9%A2%84%E5%A4%84%E7%90%86%E6%8C%87%E5%8D%97/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20250509220615.png">
 <meta property="article:published_time" content="2025-05-09T09:11:58.000Z">
-<meta property="article:modified_time" content="2025-05-09T14:08:06.191Z">
+<meta property="article:modified_time" content="2025-05-09T14:11:12.525Z">
 <meta property="article:author" content="Jesse Chen">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://xingdayup.github.io/image/UKB%E4%B8%ADrs-fMRI%E9%A2%84%E5%A4%84%E7%90%86%E6%8C%87%E5%8D%97/image-20250509171713847.png">
@@ -39,7 +39,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>UKB中rs-fMRI预处理指南 - ChenJinxing&#39;s Blog</title>
+  <title>UKB中rs-fMRI预处理指南（一） - ChenJinxing&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -218,7 +218,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="UKB中rs-fMRI预处理指南"></span>
+            <span id="subtitle" data-typed-text="UKB中rs-fMRI预处理指南（一）"></span>
           
         </div>
 
@@ -298,12 +298,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">UKB中rs-fMRI预处理指南</h1>
+            <h1 id="seo-header">UKB中rs-fMRI预处理指南（一）</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="UKBiobank静息态功能磁共振数据预处理指南（一）"><a href="#UKBiobank静息态功能磁共振数据预处理指南（一）" class="headerlink" title="UKBiobank静息态功能磁共振数据预处理指南（一）"></a>UKBiobank静息态功能磁共振数据预处理指南（一）</h2><h3 id="数据介绍"><a href="#数据介绍" class="headerlink" title="数据介绍"></a>数据介绍</h3><p>依据UK Biobank官方mri数据介绍文件：<a target="_blank" rel="noopener" href="https://biobank.ctsu.ox.ac.uk/crystal/crystal/docs/brain_mri.pdf">brain_mri.pdf</a>：</p>
+                <h3 id="数据介绍"><a href="#数据介绍" class="headerlink" title="数据介绍"></a>数据介绍</h3><p>依据UK Biobank官方mri数据介绍文件：<a target="_blank" rel="noopener" href="https://biobank.ctsu.ox.ac.uk/crystal/crystal/docs/brain_mri.pdf">brain_mri.pdf</a>：</p>
 <p><img src="/../image/UKB%E4%B8%ADrs-fMRI%E9%A2%84%E5%A4%84%E7%90%86%E6%8C%87%E5%8D%97/image-20250509171713847.png" srcset="/img/loading.gif" lazyload alt="image-20250509171713847"></p>
 <h4 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h4><p>下面图片中文字来自于上述文件，是对英国生物银行 (UK Biobank) 项目中静息态功能性磁共振成像 (Resting-state functional MRI, rsfMRI) 采集参数和相关参考扫描的详细说明。</p>
 <p><img src="/../image/UKB%E4%B8%ADrs-fMRI%E9%A2%84%E5%A4%84%E7%90%86%E6%8C%87%E5%8D%97/image-20250509171837507.png" srcset="/img/loading.gif" lazyload alt="image-20250509171837507"></p>
@@ -632,7 +632,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>UKB中rs-fMRI预处理指南</div>
+      <div>UKB中rs-fMRI预处理指南（一）</div>
       <div>https://xingdayup.github.io/2025/05/09/UKB中rs-fMRI预处理指南/</div>
     </div>
     <div class="license-meta">
