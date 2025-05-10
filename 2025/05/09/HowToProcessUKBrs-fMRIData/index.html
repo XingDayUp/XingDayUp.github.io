@@ -22,18 +22,19 @@
     <meta name="description" content="数据介绍依据UK Biobank官方mri数据介绍文件：brain_mri.pdf：  协议下面图片中文字来自于上述文件，是对英国生物银行 (UK Biobank) 项目中静息态功能性磁共振成像 (Resting-state functional MRI, rsfMRI) 采集参数和相关参考扫描的详细说明。  以下是各项参数的解释：  Resolution: 2.4x2.4x2.4 mm  含义：">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UKB中rs-fMRI预处理指南（一）">
-<meta property="og:url" content="https://xingdayup.github.io/2025/05/09/UKB%E4%B8%ADrs-fMRI%E9%A2%84%E5%A4%84%E7%90%86%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:url" content="https://xingdayup.github.io/2025/05/09/HowToProcessUKBrs-fMRIData/index.html">
 <meta property="og:site_name" content="ChenJinxing&#39;s Blog">
 <meta property="og:description" content="数据介绍依据UK Biobank官方mri数据介绍文件：brain_mri.pdf：  协议下面图片中文字来自于上述文件，是对英国生物银行 (UK Biobank) 项目中静息态功能性磁共振成像 (Resting-state functional MRI, rsfMRI) 采集参数和相关参考扫描的详细说明。  以下是各项参数的解释：  Resolution: 2.4x2.4x2.4 mm  含义：">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://xingdayup.github.io/image/UKB%E4%B8%ADrs-fMRI%E9%A2%84%E5%A4%84%E7%90%86%E6%8C%87%E5%8D%97/image-20250509171713847.png">
-<meta property="og:image" content="https://xingdayup.github.io/image/UKB%E4%B8%ADrs-fMRI%E9%A2%84%E5%A4%84%E7%90%86%E6%8C%87%E5%8D%97/image-20250509171837507.png">
-<meta property="og:image" content="https://xingdayup.github.io/image/UKB%E4%B8%ADrs-fMRI%E9%A2%84%E5%A4%84%E7%90%86%E6%8C%87%E5%8D%97/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20250509220615.png">
+<meta property="og:image" content="https://xingdayup.github.io/image/HowToProcessUKBrs-fMRIData/image-20250509171713847.png">
+<meta property="og:image" content="https://xingdayup.github.io/image/HowToProcessUKBrs-fMRIData/image-20250509171837507.png">
+<meta property="og:image" content="https://xingdayup.github.io/image/HowToProcessUKBrs-fMRIData/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20250509220615.png">
 <meta property="article:published_time" content="2025-05-09T09:11:58.000Z">
-<meta property="article:modified_time" content="2025-05-09T14:18:20.904Z">
+<meta property="article:modified_time" content="2025-05-10T14:50:29.055Z">
 <meta property="article:author" content="Jesse Chen">
+<meta property="article:tag" content="UK Biokank">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://xingdayup.github.io/image/UKB%E4%B8%ADrs-fMRI%E9%A2%84%E5%A4%84%E7%90%86%E6%8C%87%E5%8D%97/image-20250509171713847.png">
+<meta name="twitter:image" content="https://xingdayup.github.io/image/HowToProcessUKBrs-fMRIData/image-20250509171713847.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -304,9 +305,9 @@
               <div class="markdown-body">
                 
                 <h3 id="数据介绍"><a href="#数据介绍" class="headerlink" title="数据介绍"></a>数据介绍</h3><p>依据UK Biobank官方mri数据介绍文件：<a target="_blank" rel="noopener" href="https://biobank.ctsu.ox.ac.uk/crystal/crystal/docs/brain_mri.pdf">brain_mri.pdf</a>：</p>
-<p><img src="/../image/UKB%E4%B8%ADrs-fMRI%E9%A2%84%E5%A4%84%E7%90%86%E6%8C%87%E5%8D%97/image-20250509171713847.png" srcset="/img/loading.gif" lazyload alt="image-20250509171713847"></p>
+<p><img src="/../image/HowToProcessUKBrs-fMRIData/image-20250509171713847.png" srcset="/img/loading.gif" lazyload alt="image-20250509171713847"></p>
 <h4 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h4><p>下面图片中文字来自于上述文件，是对英国生物银行 (UK Biobank) 项目中静息态功能性磁共振成像 (Resting-state functional MRI, rsfMRI) 采集参数和相关参考扫描的详细说明。</p>
-<p><img src="/../image/UKB%E4%B8%ADrs-fMRI%E9%A2%84%E5%A4%84%E7%90%86%E6%8C%87%E5%8D%97/image-20250509171837507.png" srcset="/img/loading.gif" lazyload alt="image-20250509171837507"></p>
+<p><img src="/../image/HowToProcessUKBrs-fMRIData/image-20250509171837507.png" srcset="/img/loading.gif" lazyload alt="image-20250509171837507"></p>
 <p>以下是各项参数的解释：</p>
 <ul>
 <li><p><strong><code>Resolution: 2.4x2.4x2.4 mm</code></strong></p>
@@ -581,7 +582,7 @@
 <p>）输入。</p>
 <ul>
 <li><p><strong>单位注意！</strong> 提供的<code>SliceTiming</code>数组是以**秒（s）<strong>为单位的。根据展示的截图 (<code>spm</code>)，软件（因为dpabi是通过调用spm的SliceTiming的函数进行校正的,SPM）在接受自定义层面时间向量时，可能期望以</strong>毫秒（ms）**为单位输入，并且参考时间也以毫秒为单位。如果软件界面明确要求毫秒，需要将<code>SliceTiming</code>数组中的每个值乘以1000（例如，0s -&gt; 0ms; 0.2675s -&gt; 267.5ms; 0.535s -&gt; 535ms; 0.0875s -&gt; 87.5ms，以此类推）。</p>
-<p><img src="/../image/UKB%E4%B8%ADrs-fMRI%E9%A2%84%E5%A4%84%E7%90%86%E6%8C%87%E5%8D%97/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20250509220615.png" srcset="/img/loading.gif" lazyload alt="spm"></p>
+<p><img src="/../image/HowToProcessUKBrs-fMRIData/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20250509220615.png" srcset="/img/loading.gif" lazyload alt="spm"></p>
 </li>
 <li><p><strong>格式</strong>：确保数值的输入格式符合软件要求（例如，空格分隔的数值串，或者从文本文件加载）。</p>
 </li>
@@ -622,6 +623,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Data-Processing/" class="category-chain-item">Data Processing</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/UK-Biokank/" class="print-no-link">#UK Biokank</a>
+      
+    </div>
   
 </div>
 
@@ -632,7 +661,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>UKB中rs-fMRI预处理指南（一）</div>
-      <div>https://xingdayup.github.io/2025/05/09/UKB中rs-fMRI预处理指南/</div>
+      <div>https://xingdayup.github.io/2025/05/09/HowToProcessUKBrs-fMRIData/</div>
     </div>
     <div class="license-meta">
       
@@ -676,11 +705,17 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2025/05/10/UkB-rs-fMRI-problems/" title="UkB_rs-fMRI_problems">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">UkB_rs-fMRI_problems</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/05/08/%E5%9B%BE%E7%89%87%E8%B7%AF%E5%BE%84%E6%8C%87%E5%8D%97/" title="【Hexo 指南】巧用 Typora 实现图片路径的优雅管理">
+                      <a href="/2025/05/08/Image%20Path%20Configuration%20Guide/" title="【Hexo 指南】巧用 Typora 实现图片路径的优雅管理">
                         <span class="hidden-mobile">【Hexo 指南】巧用 Typora 实现图片路径的优雅管理</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
