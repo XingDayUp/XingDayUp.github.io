@@ -19,28 +19,24 @@
   <meta name="author" content="Jesse Chen">
   <meta name="keywords" content="">
   
-    <meta name="description" content="在 Hexo 博客的日常维护中，图片路径管理无疑是一项既重要又时常引发困扰的任务。如何在本地使用 Typora 流畅写作，同时确保 Hexo 生成站点时图片链接准确无误，是许多博主追求的目标。本文旨在提供一种清晰的思路和实战方法，利用 Typora 的特性，配合合理的 Hexo 图片组织方式，实现“一次配置，长久省心”的图片管理体验。  痛点回顾：Hexo 图片路径为何令人迷惑？Hexo 提供了">
+    <meta name="description" content="rs-fMRI数据预处理时遇到的问题及解决方法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【Hexo 指南】巧用 Typora 实现图片路径的优雅管理">
-<meta property="og:url" content="https://xingdayup.github.io/2025/05/08/Image%20Path%20Configuration%20Guide/index.html">
+<meta property="og:title" content="UkB_rs-fMRI_problems">
+<meta property="og:url" content="https://xingdayup.github.io/2025/05/10/UkB_rsfMRI_problems/index.html">
 <meta property="og:site_name" content="ChenJinxing&#39;s Blog">
-<meta property="og:description" content="在 Hexo 博客的日常维护中，图片路径管理无疑是一项既重要又时常引发困扰的任务。如何在本地使用 Typora 流畅写作，同时确保 Hexo 生成站点时图片链接准确无误，是许多博主追求的目标。本文旨在提供一种清晰的思路和实战方法，利用 Typora 的特性，配合合理的 Hexo 图片组织方式，实现“一次配置，长久省心”的图片管理体验。  痛点回顾：Hexo 图片路径为何令人迷惑？Hexo 提供了">
+<meta property="og:description" content="rs-fMRI数据预处理时遇到的问题及解决方法">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-05-08T12:37:13.000Z">
-<meta property="article:modified_time" content="2025-05-10T14:47:45.744Z">
+<meta property="article:published_time" content="2025-05-10T14:43:18.000Z">
+<meta property="article:modified_time" content="2025-05-10T14:55:27.067Z">
 <meta property="article:author" content="Jesse Chen">
-<meta property="article:tag" content="原创">
-<meta property="article:tag" content="Hexo">
-<meta property="article:tag" content="Typora">
-<meta property="article:tag" content="图片管理">
-<meta property="article:tag" content="路径优化">
+<meta property="article:tag" content="UK Biobank">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>【Hexo 指南】巧用 Typora 实现图片路径的优雅管理 - ChenJinxing&#39;s Blog</title>
+  <title>UkB_rs-fMRI_problems - ChenJinxing&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -219,7 +215,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="【Hexo 指南】巧用 Typora 实现图片路径的优雅管理"></span>
+            <span id="subtitle" data-typed-text="UkB_rs-fMRI_problems"></span>
           
         </div>
 
@@ -230,8 +226,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-05-08 20:37" pubdate>
-          May 8, 2025 pm
+        <time datetime="2025-05-10 22:43" pubdate>
+          May 10, 2025 pm
         </time>
       </span>
     
@@ -242,7 +238,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          472 words
+          18 words
         
       </span>
     
@@ -253,7 +249,7 @@
         
         
         
-          4 mins
+          1 mins
         
       </span>
     
@@ -299,54 +295,12 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">【Hexo 指南】巧用 Typora 实现图片路径的优雅管理</h1>
+            <h1 id="seo-header">UkB_rs-fMRI_problems</h1>
             
             
               <div class="markdown-body">
                 
-                <p>在 Hexo 博客的日常维护中，图片路径管理无疑是一项既重要又时常引发困扰的任务。如何在本地使用 Typora 流畅写作，同时确保 Hexo 生成站点时图片链接准确无误，是许多博主追求的目标。本文旨在提供一种清晰的思路和实战方法，利用 Typora 的特性，配合合理的 Hexo 图片组织方式，实现“一次配置，长久省心”的图片管理体验。</p>
-<hr>
-<h2 id="痛点回顾：Hexo-图片路径为何令人迷惑？"><a href="#痛点回顾：Hexo-图片路径为何令人迷惑？" class="headerlink" title="痛点回顾：Hexo 图片路径为何令人迷惑？"></a>痛点回顾：Hexo 图片路径为何令人迷惑？</h2><p>Hexo 提供了 <code>post_asset_folder: true</code> 的配置，允许将图片存放在与文章同名文件夹中，并通过相对路径引用。</p>
-<p>![fig.1](..&#x2F;image&#x2F;Image Path Configuration Guide&#x2F;image-20250508205137298.png)</p>
-<p>但是<code>hexo g</code>后，会发现，图片与由<code>.md</code>转化而来的<code>HTML</code>文件竟然在同一文件夹下，以至于原本设置好的相对路径无法使用，如图2：</p>
-<p>![fig.2](..&#x2F;image&#x2F;Image Path Configuration Guide&#x2F;image-20250508211015878.png)</p>
-<hr>
-<p>笔者思索良久。。。。。。</p>
-<hr>
-<h2 id="思考过程"><a href="#思考过程" class="headerlink" title="思考过程"></a>思考过程</h2><p>在学习了市面上的相关资料，并且AI助手反复沟通效果甚微后，灵光乍现💡：</p>
-<p>由于笔者此前一直使用typora软件进行<code>md</code>笔记书写，而typora软件可以自行定义：</p>
-<ol>
-<li><p>图片是否复制；</p>
-</li>
-<li><p>图片复制路径；</p>
-<p>如图3：</p>
-</li>
-</ol>
-<p>![fig.3](..&#x2F;image&#x2F;Image Path Configuration Guide&#x2F;image-20250508211431308.png)</p>
-<p>基于此前知识以及博主智慧，将typora路径功能进行发展，最终实现:</p>
-<ol>
-<li><p><code>md</code>文件名与图片文件夹一一对应;</p>
-</li>
-<li><p>一次设置，终生质保的快捷处理方式。</p>
-</li>
-</ol>
-<hr>
-<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><ol>
-<li><p><code>post_asset_folder: false</code>无需进行创建；</p>
-</li>
-<li><p>在<code>source</code>目录下建立<code>image</code>用于存放图片文件夹；</p>
-<p>![image-20250508212209100](..&#x2F;image&#x2F;Image Path Configuration Guide&#x2F;image-20250508212209100.png)</p>
-</li>
-<li><p>使用typora时，将图片偏好设置为：</p>
-<p>![image-20250508211431308](..&#x2F;image&#x2F;Image Path Configuration Guide&#x2F;image-20250508211431308.png)</p>
-</li>
-<li><p>设置完成<code>hexo clean &amp; hexo g</code>后<code>public</code>文件夹中生成<code>image</code>文件。</p>
-</li>
-<li><p><code>hexo s</code>显示成功。</p>
-</li>
-</ol>
-<hr>
-
+                <h2 id="rs-fMRI数据预处理时遇到的问题及解决方法"><a href="#rs-fMRI数据预处理时遇到的问题及解决方法" class="headerlink" title="rs-fMRI数据预处理时遇到的问题及解决方法"></a>rs-fMRI数据预处理时遇到的问题及解决方法</h2>
                 
               </div>
             
@@ -364,7 +318,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%8A%80%E6%9C%AF%E6%8C%87%E5%8D%97/" class="category-chain-item">技术指南</a>
+  <a href="/categories/Data-processing/" class="category-chain-item">Data processing</a>
   
   
 
@@ -379,15 +333,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%8E%9F%E5%88%9B/" class="print-no-link">#原创</a>
-      
-        <a href="/tags/Hexo/" class="print-no-link">#Hexo</a>
-      
-        <a href="/tags/Typora/" class="print-no-link">#Typora</a>
-      
-        <a href="/tags/%E5%9B%BE%E7%89%87%E7%AE%A1%E7%90%86/" class="print-no-link">#图片管理</a>
-      
-        <a href="/tags/%E8%B7%AF%E5%BE%84%E4%BC%98%E5%8C%96/" class="print-no-link">#路径优化</a>
+        <a href="/tags/UK-Biobank/" class="print-no-link">#UK Biobank</a>
       
     </div>
   
@@ -399,8 +345,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>【Hexo 指南】巧用 Typora 实现图片路径的优雅管理</div>
-      <div>https://xingdayup.github.io/2025/05/08/Image Path Configuration Guide/</div>
+      <div>UkB_rs-fMRI_problems</div>
+      <div>https://xingdayup.github.io/2025/05/10/UkB_rsfMRI_problems/</div>
     </div>
     <div class="license-meta">
       
@@ -412,7 +358,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>May 8, 2025</div>
+          <div>May 10, 2025</div>
         </div>
       
       
@@ -444,18 +390,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/05/09/HowToProcessUKBrs-fMRIData/" title="UKB中rs-fMRI预处理指南（一）">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">UKB中rs-fMRI预处理指南（一）</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/05/07/UKB_extraction/" title="UKB数据提取">
-                        <span class="hidden-mobile">UKB数据提取</span>
+                      <a href="/2025/05/09/HowToProcessUKBrsfMRIData/" title="UKB中rs-fMRI预处理指南（一）">
+                        <span class="hidden-mobile">UKB中rs-fMRI预处理指南（一）</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
