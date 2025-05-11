@@ -19,24 +19,26 @@
   <meta name="author" content="Jesse Chen">
   <meta name="keywords" content="">
   
-    <meta name="description" content="rs-fMRI数据预处理时遇到的问题及解决方法解决了，无语了，之后再写">
+    <meta name="description" content="最近在阅读一篇发表在Nature上的一篇文章，文章标题名为《A human brain map of mitochondrial respiratory capacity and diversity》，这是一篇我将在研究小组组会上进行分享的文章，会进行精读，同时加入个人总结与思考做成笔记文档，现整理后post到个人博客。文章完整翻译见知乎。  一、摘要以往研究已经得出：  线粒体的氧化磷酸化（OX">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UkB_rs-fMRI_problems">
-<meta property="og:url" content="https://xingdayup.github.io/2025/05/10/UkB_rsfMRI_problems/index.html">
+<meta property="og:title" content="【论文阅读】人类大脑线粒体呼吸能力与多样性图谱">
+<meta property="og:url" content="https://xingdayup.github.io/2025/05/11/HumanMitoBrainMap/index.html">
 <meta property="og:site_name" content="ChenJinxing&#39;s Blog">
-<meta property="og:description" content="rs-fMRI数据预处理时遇到的问题及解决方法解决了，无语了，之后再写">
+<meta property="og:description" content="最近在阅读一篇发表在Nature上的一篇文章，文章标题名为《A human brain map of mitochondrial respiratory capacity and diversity》，这是一篇我将在研究小组组会上进行分享的文章，会进行精读，同时加入个人总结与思考做成笔记文档，现整理后post到个人博客。文章完整翻译见知乎。  一、摘要以往研究已经得出：  线粒体的氧化磷酸化（OX">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2025-05-10T14:43:18.000Z">
-<meta property="article:modified_time" content="2025-05-11T13:55:30.683Z">
+<meta property="og:image" content="https://xingdayup.github.io/image/HumanMitoBrainMap/image-20250511195349335.png">
+<meta property="article:published_time" content="2025-05-11T11:42:57.000Z">
+<meta property="article:modified_time" content="2025-05-11T13:55:38.095Z">
 <meta property="article:author" content="Jesse Chen">
-<meta property="article:tag" content="UK Biobank">
+<meta property="article:tag" content="原创">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xingdayup.github.io/image/HumanMitoBrainMap/image-20250511195349335.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>UkB_rs-fMRI_problems - ChenJinxing&#39;s Blog</title>
+  <title>【论文阅读】人类大脑线粒体呼吸能力与多样性图谱 - ChenJinxing&#39;s Blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -215,7 +217,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="UkB_rs-fMRI_problems"></span>
+            <span id="subtitle" data-typed-text="【论文阅读】人类大脑线粒体呼吸能力与多样性图谱"></span>
           
         </div>
 
@@ -226,8 +228,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-05-10 22:43" pubdate>
-          May 10, 2025 pm
+        <time datetime="2025-05-11 19:42" pubdate>
+          May 11, 2025 pm
         </time>
       </span>
     
@@ -238,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          28 words
+          1.4k words
         
       </span>
     
@@ -249,7 +251,7 @@
         
         
         
-          1 mins
+          13 mins
         
       </span>
     
@@ -295,12 +297,49 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">UkB_rs-fMRI_problems</h1>
+            <h1 id="seo-header">【论文阅读】人类大脑线粒体呼吸能力与多样性图谱</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="rs-fMRI数据预处理时遇到的问题及解决方法"><a href="#rs-fMRI数据预处理时遇到的问题及解决方法" class="headerlink" title="rs-fMRI数据预处理时遇到的问题及解决方法"></a>rs-fMRI数据预处理时遇到的问题及解决方法</h2><p>解决了，无语了，之后再写</p>
+                <p>最近在阅读一篇发表在Nature上的一篇文章，文章标题名为《<a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41586-025-08740-6">A human brain map of mitochondrial respiratory capacity and diversity</a>》，这是一篇我将在研究小组组会上进行分享的文章，会进行精读，同时加入个人总结与思考做成笔记文档，现整理后post到个人博客。文章完整翻译见<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/1889618361366852173">知乎</a>。</p>
+<p><img src="/../image/HumanMitoBrainMap/image-20250511195349335.png" srcset="/img/loading.gif" lazyload alt="文章标题与相关信息"></p>
+<h2 id="一、摘要"><a href="#一、摘要" class="headerlink" title="一、摘要"></a>一、摘要</h2><p>以往研究已经得出：</p>
+<ol>
+<li>线粒体的氧化磷酸化（OXPHOS）为大脑活动提供了能量或者动力；</li>
+<li>线粒体缺陷与神经退行性疾病和神经精神疾病有关。</li>
+</ol>
+<p><strong>思路</strong>：想要理解大脑活动与人类行为的<strong>基础</strong>，可以从大脑的分子层面的能量景观进行研究（molecular energetic landscape）。</p>
+<p>**方法：**为了弥补宏观（认知神经科学）与微观（细胞生物学）之间的尺度差距，文章开发了一种方法：<strong>物理体素化</strong>（physical voxelization）(像素化？)。</p>
+<blockquote>
+<p>We developed a physical voxelization approach to partition a frozen human coronal hemisphere section into 703 voxels comparable to neuroimaging resolution (3 × 3 × 3 mm).</p>
+</blockquote>
+<p>这种方法将将一个冷冻的人脑冠状半球切片分割成了703个和神经成像分辨率（3×3×3mm）相当的体素。（注意：冠状、半球切片，我本来以为切了整个大脑😀）。</p>
+<p>切成小小丁（体素）后，作者在大脑的每一个皮层和皮层下体素中，对<strong>线粒体的多种表型特征</strong>进行了分析，这些特征包括：氧化磷酸化（OXPHOS）酶的活性、线粒体DNA含量与体积密度，以及线粒体特有的呼吸能力（有点理不清？）。</p>
+<p><strong>结果：<strong>作者在对这些线粒体的表型特征结果分析后，发现</strong>人类大脑中存在着由脑区拓扑结构和细胞类型共同决定的多样化线粒体表型</strong>。</p>
+<ol>
+<li>与白质相比，灰质所含的线粒体要多出50%以上。</li>
+<li>不仅如此，灰质中的线粒体在生物化学特性上更适应能量转换的需求，这种优化在近期进化形成的大脑皮层区域尤为明显。</li>
+</ol>
+<blockquote>
+<p>Compared with white matter, grey matter contains &gt;50% more mitochondria. Moreover, the mitochondria in grey matter are biochemically optimized for energy transformation, particularly among recently evolved cortical brain regions.</p>
+</blockquote>
+<p><strong>延申</strong>：依靠得取到的数据，作者**创建了一个反向线性回归模型，该模型整合了多种神经成像模态，以生成线粒体分布与特化（specialization）的全脑图谱。**该模型还成功预测了来自同一捐献者大脑内一个独立脑区的线粒体特征（不验证谁敢信。。。）。</p>
+<p><strong>意义</strong>：**这种方法（物理体素化）以及由此产生的线粒体表型MitoBrainMap（线粒体脑图谱）**为探索支撑正常大脑功能的分子能量景观提供了一个基础。这项资源（<a target="_blank" rel="noopener" href="http://humanmitobrainmap.bcblab.com/">链接在这</a>）也与神经成像数据相关联，并为与神经精神和神经退行性疾病相关的区域化大脑过程界定了亚细胞基础。</p>
+<hr>
+<p>看完摘要感悟一下:sunglasses:：研究思路不复杂，但是实验数据很珍贵以及方法很有意义。赞赞赞👍</p>
+<hr>
+<h2 id="二、介绍"><a href="#二、介绍" class="headerlink" title="二、介绍"></a>二、介绍</h2><h3 id="1-线粒体与大脑功能关系"><a href="#1-线粒体与大脑功能关系" class="headerlink" title="1. 线粒体与大脑功能关系"></a>1. 线粒体与大脑功能关系</h3><ol>
+<li><strong>现有脑成像技术的局限性</strong>：目前的功能性神经影像技术（比如核磁共振MRI）可以捕捉到大脑的电活动、代谢和血流等能量状态的变化。但是，这些都只是间接的测量，并不能直接反映细胞内部更微观层面（亚细胞层面）的生物能量转换过程。</li>
+<li><strong>线粒体的核心作用——能量工厂</strong>：所有大脑的基础活动和因活动产生的过程，都依赖于细胞的能量转换，也就是生物能量学。这个过程的核心是三磷酸腺苷（ATP）的合成，主要由细胞内数以万亿计的线粒体通过**氧化磷酸化（OXPHOS）**来完成。每个神经元和神经胶质细胞都含有成百上千个这样的“能量工厂”。</li>
+<li><strong>线粒体的多功能性</strong>：线粒体不仅为大脑活动提供必需的能量，它们还经过特化以满足特定的细胞需求，并指导亚细胞活动。除了能量供应，线粒体还参与许多其他关键功能，比如细胞间的信号传递、调控神经元的兴奋性、神经递质的释放以及调节炎症过程。</li>
+<li><strong>线粒体与大脑网络及认知行为</strong>：因此，线粒体在整个大脑的大尺度网络中扮演着至关重要的支持角色。近期的机理研究也强调了线粒体对认知和行为的影响。</li>
+<li><strong>研究中的尺度鸿沟</strong>：然而，目前研究线粒体主要是在细胞生物学的亚微米（非常微小）尺度上进行的。而认知神经科学和系统神经科学，尤其是使用传统场强的磁共振成像（MRI）对全脑进行成像时，其操作尺度是在毫米级别。这两者之间存在巨大的方法学和概念上的尺度差距。</li>
+<li><strong>核心挑战</strong>：这种尺度上的差距，成为了我们理解能量转换的线粒体在大脑结构中的空间分布，以及它们如何驱动和指导复杂人脑动态变化的一个主要障碍。</li>
+</ol>
+<p>简单来说，这段强调了<strong>线粒体是大脑功能的核心，不仅提供能量，还参与多种重要过程，但我们目前很难将微观的线粒体研究与宏观的大脑影像研究联系起来，这阻碍了我们更深入地理解大脑的工作机制。</strong></p>
+<p>这里形成了<strong>能量-ATP-氧化磷酸化（OXPHOS）-线粒体</strong>的关系链:link::link:。</p>
+<h3 id="2-现有的神经成像技术不足之处"><a href="#2-现有的神经成像技术不足之处" class="headerlink" title="2. 现有的神经成像技术不足之处"></a>2. 现有的神经成像技术不足之处</h3><p>1. </p>
 
                 
               </div>
@@ -319,7 +358,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Data-processing/" class="category-chain-item">Data processing</a>
+  <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" class="category-chain-item">论文阅读</a>
   
   
 
@@ -334,7 +373,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/UK-Biobank/" class="print-no-link">#UK Biobank</a>
+        <a href="/tags/%E5%8E%9F%E5%88%9B/" class="print-no-link">#原创</a>
       
     </div>
   
@@ -346,8 +385,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>UkB_rs-fMRI_problems</div>
-      <div>https://xingdayup.github.io/2025/05/10/UkB_rsfMRI_problems/</div>
+      <div>【论文阅读】人类大脑线粒体呼吸能力与多样性图谱</div>
+      <div>https://xingdayup.github.io/2025/05/11/HumanMitoBrainMap/</div>
     </div>
     <div class="license-meta">
       
@@ -359,7 +398,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>May 10, 2025</div>
+          <div>May 11, 2025</div>
         </div>
       
       
@@ -391,18 +430,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/05/11/HumanMitoBrainMap/" title="【论文阅读】人类大脑线粒体呼吸能力与多样性图谱">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">【论文阅读】人类大脑线粒体呼吸能力与多样性图谱</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/05/09/HowToProcessUKBrsfMRIData/" title="UKB中rs-fMRI预处理指南（一）">
-                        <span class="hidden-mobile">UKB中rs-fMRI预处理指南（一）</span>
+                      <a href="/2025/05/10/UkB_rsfMRI_problems/" title="UkB_rs-fMRI_problems">
+                        <span class="hidden-mobile">UkB_rs-fMRI_problems</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
