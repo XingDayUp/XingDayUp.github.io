@@ -1,0 +1,994 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/me.png">
+  <link rel="icon" href="/img/me.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="Jesse Chen">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="这篇论文是我目前在做的工作的参考，因为我近来在用另一批数据套用这篇文章的方法，思路以及算法有些模糊了，所以重新整理一下。文章发表在Nature Communication，原标题为《Derivation and utility of schizophrenia polygenic risk associated multimodal MRI frontotemporal network》,发表时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="精神分裂症多基因风险相关多模态MRI额颞叶网络的推导和应用">
+<meta property="og:url" content="https://xingdayup.github.io/2025/05/21/MCCAR_jICA/index.html">
+<meta property="og:site_name" content="ChenJinxing&#39;s Blog">
+<meta property="og:description" content="这篇论文是我目前在做的工作的参考，因为我近来在用另一批数据套用这篇文章的方法，思路以及算法有些模糊了，所以重新整理一下。文章发表在Nature Communication，原标题为《Derivation and utility of schizophrenia polygenic risk associated multimodal MRI frontotemporal network》,发表时">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://xingdayup.github.io/image/MCCAR_jICA/image-20250521142133883.png">
+<meta property="og:image" content="https://xingdayup.github.io/2025/05/21/image/MCCAR_jICA/image-20250521142231135.png">
+<meta property="og:image" content="https://xingdayup.github.io/2025/05/21/image/MCCAR_jICA/image-20250521143044027.png">
+<meta property="og:image" content="https://xingdayup.github.io/2025/05/21/image/MCCAR_jICA/image-20250521144350742.png">
+<meta property="og:image" content="https://xingdayup.github.io/2025/05/21/image/MCCAR_jICA/image-20250521151410818.png">
+<meta property="og:image" content="https://xingdayup.github.io/2025/05/21/image/MCCAR_jICA/image-20250521151059576.png">
+<meta property="og:image" content="https://xingdayup.github.io/2025/05/21/image/MCCAR_jICA/image-20250521155020394.png">
+<meta property="og:image" content="https://xingdayup.github.io/image/MCCAR_jICA/image-20250521160551556.png">
+<meta property="og:image" content="https://xingdayup.github.io/image/MCCAR_jICA/image-20250521160638883.png">
+<meta property="og:image" content="https://xingdayup.github.io/2025/05/21/image/MCCAR_jICA/image-20250521161256174.png">
+<meta property="og:image" content="https://xingdayup.github.io/2025/05/21/image/MCCAR_jICA/image-20250521161654398.png">
+<meta property="article:published_time" content="2025-05-21T05:05:34.000Z">
+<meta property="article:modified_time" content="2025-05-21T08:26:08.739Z">
+<meta property="article:author" content="Jesse Chen">
+<meta property="article:tag" content="原创">
+<meta property="article:tag" content="PRS">
+<meta property="article:tag" content="UKB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://xingdayup.github.io/image/MCCAR_jICA/image-20250521142133883.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>精神分裂症多基因风险相关多模态MRI额颞叶网络的推导和应用 - ChenJinxing&#39;s Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xingdayup.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"vdZLnTIdTwJmBWlW8LgSqJcp-gzGzoHsz","app_key":"SraJp3AuS35E7IyflZgQqEt2","server_url":"https://vdzlntid.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      ChenJinxing&#39;s Blog
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>Home</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>Archives</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>Categories</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>Tags</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>About</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="精神分裂症多基因风险相关多模态MRI额颞叶网络的推导和应用"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-21 13:05" pubdate>
+          May 21, 2025 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.7k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          65 mins
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">精神分裂症多基因风险相关多模态MRI额颞叶网络的推导和应用</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p><img src="/../image/MCCAR_jICA/image-20250521142133883.png" srcset="/img/loading.gif" lazyload alt="image-20250521142133883"></p>
+<p>这篇论文是我目前在做的工作的参考，因为我近来在用另一批数据套用这篇文章的方法，思路以及算法有些模糊了，所以重新整理一下。文章发表在Nature Communication，原标题为《<a target="_blank" rel="noopener" href="https://www.nature.com/articles/s41467-022-32513-8">Derivation and utility of schizophrenia polygenic risk associated multimodal MRI frontotemporal network</a>》,发表时间是2022年八月。</p>
+<hr>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>精神分裂症（SZ）是一种<strong>高度遗传</strong>的精神疾病，其特征是广泛的大脑<strong>功能和结构</strong>异常。然而，之前的 MRI 与多基因风险之间的关联研究大多是基于 ROI 的单一模态分析，而不是识别基于大脑的多模态预测生物标志物。根据英国生物银行数据集中健康白人的精神分裂症多基因风险评分 (PRS)（ N &#x3D; 22,459），我们<strong>发现了一种与 PRS 相关的稳健大脑模式</strong>，其灰质体积较小，额颞叶皮质功能激活减少，这将精神分裂症与精神分裂症<strong>区分</strong>开来。控制准确度为 &gt;83%，并<strong>预测</strong> 4 个独立精神分裂症队列的认知和症状。进一步的多种疾病比较表明，这些确定的额颞叶改变<strong>在精神分裂症和精神分裂情感患者中最为严重</strong>，在双相情感障碍中较轻，并且与自闭症、抑郁症和注意力缺陷多动障碍的对照者没有区别。这些发现表明，所识别出的与多基因风险评分（PRS）相关的多模态前颞网络具有作为精神分裂症特异性的跨诊断基因介导的脑部<strong>生物标志物</strong>的潜力。</p>
+<ul>
+<li>这里有几个问题<ol>
+<li>多模态预测和单模态预测相比有什么优势？</li>
+<li>为什么要将多基因风险与MRI关联，他们比不关联又有什么优势呢？</li>
+<li>在我的工作中，我将<strong>IL-6</strong>作为介导物，如何将他们关联起来。</li>
+</ol>
+</li>
+</ul>
+<h2 id="前言概述"><a href="#前言概述" class="headerlink" title="前言概述"></a>前言概述</h2><h3 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h3><ol>
+<li>精神分裂症与遗传因素-基因风险分数（PRS）关联；</li>
+<li>精神分裂症与大脑结构有关，部分大脑结构改变与认知有关；</li>
+<li>SZ_PRS与MRI的结构和功能都有关联（啥叫关联？），可能导致心理功能与临床症状的改变。<strong>将PRS与MRI进行结合，可以从遗传和脑表型两个角度对精神分裂症相关的潜在的病理生理过程提供互补的见解</strong>。</li>
+<li>目前尽管有报道称精神分裂症患者的大脑异常与 PRS 有关，但研究只关注了一种成像模式，并使用了基于感兴趣区（ROI）的简单相关分析。</li>
+<li>尚未使用全脑多模态 MRI 融合来识别 <strong>PRS 相关模式</strong>，包括使用机器学习方法来评估其生物标记物特性。更具体地说，目前还没有针对 SZ 和健康对照（HC）分类的 <strong>PRS-多模态联合脑成像研究</strong>，也没有利用这些变量<strong>预测</strong>认知或症状的研究。</li>
+<li>如果成功，本文提出的方法将是朝着使用成像遗传数据作为潜在生物标记物以协助临床医生进行鉴别诊断和预测相关临床结果迈出的重要一步。</li>
+</ol>
+<h3 id="文章思路"><a href="#文章思路" class="headerlink" title="文章思路"></a>文章思路</h3><p>研究旨在通过关联精神分裂症的多基因风险评分 (PRS-SZ) 与大脑结构和功能的特定协变模式，来识别精神分裂症的脑影像标记。</p>
+<p>研究人员假设：</p>
+<ol>
+<li>PRS-SZ 与一种独特的多模态（静息态功能磁共振成像和结构磁共振成像）大脑模式相关。</li>
+<li>这种大脑模式能够准确区分精神分裂症患者 (SZ) 和健康对照组 (HC)。</li>
+<li>这种模式能够预测精神分裂症患者的重要临床指标。</li>
+</ol>
+<p>为实现这一目标，该研究包括了几个步骤：</p>
+<ul>
+<li><strong>发现阶段：</strong> 他们使用了来自英国生物样本库 (UK Biobank) 的大规模数据集（N &#x3D; 22,459名健康白人），基于<strong>低频振幅分数 (fALFF)</strong> 和<strong>灰质体积 (GMV)</strong> 来识别与PRS相关的脑模式。</li>
+<li><strong>内部验证：</strong> 随后，在英国生物样本库内部，使用不同的人群样本和变化的遗传风险评分阈值对这种已识别的模式进行了验证。</li>
+<li><strong>外部验证：</strong> 在四个独立（不同于英国生物样本库）的精神分裂症队列中，测试了这种与PRS相关的脑模式对精神分裂症患者进行分类以及预测认知&#x2F;症状结果的能力。</li>
+<li><strong>特异性验证：</strong> 研究人员还调查了这种脑模式是否为精神分裂症所特有，或者是否也存在于其他精神疾病中。</li>
+</ul>
+<img src="../image/MCCAR_jICA/image-20250521142231135.png" srcset="/img/loading.gif" lazyload alt="Flowchart for developing, testing and validating the SZ PRS-associated multimodal pattern" style="zoom: 50%;" />
+
+<p><em>(a) SZ PRS was used as a reference to guide fALFF + GMV fusion to identify PRS-associated multimodal networks. (b) PRS-associated networks were separated as positive (Z &gt; 0) and negative (Z &lt; 0) brain regions based on the Z-scored brain maps, resulting in 4 features for the following analysis. (c) The same fusion with PRS analysis was performed on healthy white people, healthy subjects, and all the available subjects within UKB with PRS thresholded at PSNP &#x3D; 5.0e−08, 1.0e−04 and 0.05, and pruned at r2 &lt; 0.1 and 0.2, respectively. (d) Group differences between SZ and HC of the identified PRS-associated features were tested across 4 independent SZ cohorts (including BSNIP-1, COBRE, fBIRN and MPRC). (e) Linear SVM was used to classify SZ and HC across 4 independent SZ cohorts based on PRSassociated features (including BSNIP-1, COBRE, fBIRN and MPRC); multiple linear  regression was performed to predict cognition and symptom for SZ across 3 independent cohorts (BSNIP-1, COBRE, and fBIRN). MPRC data were not included in the prediction analysis since the related clinical measures were not available. (f) Group differences between SZ and other psychosis subjects and their relatives, and between other psychiatric disorders (ASD, MDD, ADHD) and HC were tested. UKB (UK Biobank, N &#x3D; 37,347); BSNIP-1 (Bipolar and Schizophrenia Network for Intermediate Phenotypes), SZ: N &#x3D; 178; HC: N &#x3D; 220; COBRE (Center for Biomedical Research Excellence), SZ: N &#x3D; 100; HC: N &#x3D; 90; fBIRN (Functional Imaging Biomedical Informatics Research Network), SZ: N &#x3D; 164; HC: N &#x3D; 157; MPRC (Maryland Psychiatric Research Center), SZ: N &#x3D; 164; HC: N &#x3D; 157; ASD autism spectrum disorder, MDD major depressive disorder, ADHD attention-deficit&#x2F;hyperactivity disorder, SVM support vector machine.</em></p>
+<p>最终目标是，通过整合来自大规模英国生物样本库样本和四个独立精神分裂症队列的多基因风险评分数据与多模态MRI特征，建立一个与精神分裂症遗传风险相关的、更稳健的功能-结构MRI特征。</p>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><h3 id="SZ-PRS-associated-multimodal-brain-network"><a href="#SZ-PRS-associated-multimodal-brain-network" class="headerlink" title="SZ PRS-associated multimodal brain network"></a>SZ PRS-associated multimodal brain network</h3><p>这段文字描述了研究者如何识别与精神分裂症多基因风险评分 (PRS-SZ) 相关的多模态（fALFF + GMV）大脑网络模式。</p>
+<p>主要内容如下：</p>
+<ol>
+<li><p><strong>PRS-SZ的计算：</strong> 研究者基于精神基因组学联盟 (PGC SZ 2) 的108个风险位点计算了精神分裂症的PRS，并设定了特定的统计学阈值 (PSNP &lt; 5.0e−08, r2 &lt; 0.1)。</p>
+</li>
+<li><p><strong>数据预处理：</strong> 在进行融合分析前，从fALFF（低频振幅分数）和GMV（灰质体积）特征矩阵中回归剔除了头动、研究地点、性别和年龄的影响。</p>
+</li>
+<li><p><strong>发现队列与方法：</strong> 使用英国生物样本库 (UKB) 中22,459名健康白人的数据，通过将PRS与fALFF和GMV数据进行融合分析，以识别与PRS相关的多模态模式。</p>
+</li>
+<li><p><strong>核心发现：</strong> 识别出一个与PRS呈正相关的联合成分。这个成分与PRS的fALFF相关性 r &#x3D; 0.074 (p &#x3D; 4.1e−30)，与GMV的相关性 r &#x3D; 0.074 (p &#x3D; 1.6e−28)，这些结果都经过了多重比较校正 (FDR)。</p>
+<img src="../image/MCCAR_jICA/image-20250521143044027.png" srcset="/img/loading.gif" lazyload alt="image-20250521143044027" style="zoom:50%;" />
+</li>
+<li><p><strong>效应量与统计功效：</strong> 尽管该模式解释的方差小于1%（与以往基于ROI的单模态分析结果一致），但统计功效非常高 (1 − β &#x3D; 1)。</p>
+<blockquote>
+<p>解释的方差百分比计算方法就是将该联合成分与PRS-SZ之间的相关系数r (0.074) 进行平方，得到R²。</p>
+</blockquote>
+</li>
+<li><p><strong>对比分析的局限性：</strong> 研究者指出，直接计算PRS与全脑体素水平MRI特征之间的相关性非常弱（fALFF最大绝对相关性r仅为0.03，GMV为0.028）。同样，基于脑图谱提取的平均值与PRS的相关性所解释的方差也小于1%。这凸显了融合分析方法的优势。</p>
+<blockquote>
+<p><strong>“直接计算PRS与全脑体素水平MRI特征之间的相关性非常弱”：</strong> 研究者除了使用复杂的“融合分析”方法外，还尝试了更简单直接的方法。一种是逐个体素（voxel，可以理解为MRI图像中的小立方体单元）地计算其fALFF或GMV值与PRS-SZ之间的相关性。结果发现，这种直接的相关性非常微弱。对于fALFF，在全脑数万个体素中，相关性系数r的最大绝对值也只有0.03；对于GMV，也只有0.028。这些r值接近于0，表明几乎没有线性关系。</p>
+<p><strong>“同样，基于脑图谱提取的平均值与PRS的相关性所解释的方差也小于1%”：</strong> 另一种简单方法是，不看单个体素，而是根据已有的脑图谱（将大脑划分为不同区域的模板）计算每个脑区的平均fALFF或GMV值，再看这些平均值与PRS-SZ的相关性。结果是，这种方法解释的PRS-SZ方差也小于1%，与融合分析得到的整体模式的解释力相似（但融合分析找到了一个特定的“模式”，而这里只是看单个区域平均值）。</p>
+<p><strong>“这凸显了融合分析方法的优势”：</strong> 这句话是结论。因为上述两种更直接、更简单的方法（逐体素分析、基于图谱的区域平均值分析）得到的相关性要么极低，要么解释力与融合分析方法相仿但未能揭示多模态的“协变模式”。而研究中采用的“融合分析”方法（原文提到“fusion with PRS was performed to identify PRS-associated fALFF + GMV multimodal pattern”）能够同时考虑fALFF和GMV两种模态的数据，并识别出它们如何“共同变化”以与PRS-SZ关联。尽管其解释的总方差也不高，但它能成功识别出一个统计上非常显著的、结构化的、多模态的“联合成分”或“模式”。这表明，精神分裂症的遗传风险可能不是简单地与单个脑区的孤立特征相关，而是与跨多个脑区、跨多种模态特征的复杂组合模式相关，而这种复杂模式需要更高级的分析方法（如融合分析）才能捕捉到。</p>
+</blockquote>
+</li>
+<li><p>PRS相关模式的具体描述：</p>
+<ul>
+<li><strong>fALFF表现：</strong> 在额中下回 (MIFC)、颞上中回 (SMTC) 与PRS呈正相关（红色区域）；在丘脑、后扣带皮层 (PCC)、枕中回 (MOC) 和舌回 (LG) 与PRS呈负相关（蓝色区域）。</li>
+<li><strong>GMV表现：</strong> 在前脑岛和海马区与PRS呈正相关；在中脑岛、颞上中下回 (SMITC)、梭状回 (FG) 和海马旁回与PRS呈负相关。</li>
+</ul>
+</li>
+<li><p><strong>更多细节：</strong> 具体的脑区信息（Talairach标签）在补充表2中有详细列表。</p>
+</li>
+</ol>
+<p>总而言之，研究通过一种多模态融合分析方法，在大量健康人群中成功识别出一个与精神分裂症遗传风险相关的、由特定脑区fALFF和GMV共同变化的复杂脑网络模式，尽管其<strong>解释的个体差异较小</strong>，但具有<strong>高度的统计学意义</strong>。 	</p>
+<h3 id="PRS-MRI-linkage-replication-in-SZ-patients"><a href="#PRS-MRI-linkage-replication-in-SZ-patients" class="headerlink" title="PRS-MRI linkage replication in SZ patients"></a>PRS-MRI linkage replication in SZ patients</h3><p>这段主要讲述了研究者如何对先前识别的**PRS（多基因风险评分）-MRI（脑影像）**关联模式进行验证和特异性确认。</p>
+<p>主要分为两个部分：</p>
+<ol>
+<li><p><strong>在精神分裂症患者中复制PRS-MRI关联 (PRS-MRI linkage replication in SZ patients)：</strong></p>
+<ul>
+<li><strong>方法</strong>：研究者将先前在健康人群中识别出的PRS相关空间脑图谱（PRS spatial maps）<strong>线性投影</strong>到290名精神分裂症患者的数据上。</li>
+<li><strong>结果</strong>：在这些患者中，PRS与该脑影像成分之间的相关性依然显著（fALFF：r &#x3D; 0.35, p &#x3D; 1.2e−04；GMV：r &#x3D; 0.33, p &#x3D; 1.4e−04）。星号表示经过FDR校正。</li>
+</ul>
+<img src="../image/MCCAR_jICA/image-20250521144350742.png" srcset="/img/loading.gif" lazyload alt="image-20250521144350742" style="zoom:50%;" />
+
+<ul>
+<li><strong>结论</strong>：这意味着PRS与该特定脑模式之间的关联能够在一个独立的精神分裂症患者数据集中得到复制和验证。</li>
+</ul>
+</li>
+<li><p><strong>确认PRS相关模式的特异性 (Specificity Confirmation)：</strong></p>
+<ul>
+<li><strong>目的</strong>：为了证实提取出的PRS相关脑模式是特异于PRS本身的，而不是一个随机产生的模式。</li>
+<li><strong>方法</strong>：研究者在有监督的融合分析中对PRS进行了置换检验（permuted the PRS）。这通常意味着他们打乱PRS的顺序，再进行分析，看是否还会出现类似的脑模式。</li>
+<li><strong>结果</strong>：通过置换产生的随机模式（null pattern）与先前识别出的PRS相关模式非常不相似。</li>
+<li><strong>结论</strong>：这证实了所识别的脑模式确实是与真实的PRS相关的，而非偶然或随机形成的。</li>
+</ul>
+<img src="../image/MCCAR_jICA/image-20250521151410818.png" srcset="/img/loading.gif" lazyload alt="image-20250521151410818" style="zoom: 67%;" /></li>
+</ol>
+<p><strong>总结来说，研究者成功地在一个独立的精神分裂症患者队列中复制了最初发现的PRS与特定多模态脑影像模式之间的关联。此外，通过置换检验，他们还证明了这个脑模式是特异性地与精神分裂症的PRS相关，而不是一个随机的脑活动或结构模式。</strong></p>
+<h3 id="PRS-pattern-consistency-across-PRS-parameters-within-UKB-sample"><a href="#PRS-pattern-consistency-across-PRS-parameters-within-UKB-sample" class="headerlink" title="PRS-pattern consistency across PRS parameters within UKB sample"></a>PRS-pattern consistency across PRS parameters within UKB sample</h3><p>这段阐述了研究者如何在英国生物样本库 (UKB) 内部，通过改变多种参数来验证先前识别的“PRS（多基因风险评分）相关脑模式”的稳定性和一致性。</p>
+<p>主要验证方法和结果如下：</p>
+<ol>
+<li><p><strong>在UKB样本内部对PRS参数进行稳健性验证：</strong></p>
+<ul>
+<li><strong>方法</strong>：研究者在UKB样本的不同子集（健康的白人、所有健康被试、所有通过MRI质量控制的被试）中，使用了不同的PRS计算阈值（PSNP阈值：5.0e−08, 1.0e−04, 0.05；连锁不平衡剪枝阈值r²：&lt; 0.1 和 &lt; 0.2）重复了PRS引导的融合分析。</li>
+</ul>
+<img src="../image/MCCAR_jICA/image-20250521151059576.png" srcset="/img/loading.gif" lazyload alt="Replication of the identified PRS-associated pattern within UKB" style="zoom:50%;" />
+
+<ul>
+<li>结果：<ul>
+<li>已识别的PRS相关的额颞叶模式 (frontotemporal pattern) 在UKB内部具有高度可重复性。</li>
+<li>在不同的剪枝阈值和人群选择策略下，特定的fALFF模式（额中下回MIFC、颞上中回SMTC呈正相关；丘脑、后扣带皮层PCC、枕中回MOC、舌回LG呈负相关）和GMV模式（前脑岛、海马呈正相关；中脑岛、颞上中下回SMITC、梭状回FG、海马旁回呈负相关）具有超过80%的空间相似性。</li>
+<li>在不同的PSNP阈值下，部分核心模式（fALFF在MIFC、SMTC的正相关，PCC、MOC的负相关；GMV在前脑岛、海马的正相关，中脑岛、海马旁回的负相关）也得到了超过50%的空间相似性验证。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>使用不同版本的PRS定义进行验证：</strong></p>
+<ul>
+<li><strong>方法</strong>：研究者还使用了基于更新的PGC SZ 3（包含270个位点，来自更大规模的GWAS研究）计算的PRS进行了验证。</li>
+<li>结果：<ul>
+<li>基于PGC3和PGC2计算出的精神分裂症PRS之间高度相关。</li>
+<li>使用PGC2引导的融合分析和PGC3引导的融合分析所识别出的PRS相关脑模式也非常相似（fALFF成分相似性为0.89，GMV成分相似性为0.85）。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>总结来说，该研究通过在UKB样本内改变人群选择、PRS计算的PSNP阈值和剪枝阈值，以及使用来自不同GWAS研究版本（PGC2 vs PGC3）的PRS定义，均发现先前识别的核心PRS相关脑模式（特别是额颞叶区域的fALFF和GMV变化）具有高度的稳定性和可重复性。这增强了该PRS相关脑模式作为精神分裂症潜在生物标记的可靠性。</strong></p>
+<h3 id="Site-and-motion-effects-on-the-identified-PRS-pattern"><a href="#Site-and-motion-effects-on-the-identified-PRS-pattern" class="headerlink" title="Site and motion effects on the identified PRS-pattern"></a>Site and motion effects on the identified PRS-pattern</h3><p>这段主要评估了MRI扫描地点 (site) 和头动 (motion) 以及智商 (IQ) 这些潜在混杂因素对先前识别的“PRS（多基因风险评分）相关脑模式”的影响。</p>
+<p>主要内容和结论如下：</p>
+<ol>
+<li><strong>地点效应 (Site effects)：</strong><ul>
+<li>UKB数据来自三个不同的扫描地点（Cheadle, Reading, Newcastle）。</li>
+<li>研究者分别对每个地点的数据进行了PRS引导的融合分析。</li>
+<li>结果显示，在三个地点各自识别出的PRS相关额颞叶模式与整体UKB样本识别的模式之间存在高度的空间相似性（&gt;0.70）。</li>
+<li><strong>重要前提</strong>：在最初的主要融合分析中，地点效应已经作为协变量从fALFF&#x2F;GMV特征矩阵中被回归剔除了。</li>
+<li><strong>结论</strong>：因此，研究者认为扫描地点不是影响所识别PRS相关额颞叶多模态模式的主要混杂因素。</li>
+</ul>
+</li>
+<li><strong>头动效应 (Motion effects)：</strong><ul>
+<li>研究者采取了多种策略来控制头动伪影的影响：<ul>
+<li><strong>预处理</strong>：对fMRI数据进行尖波去除 (despiked)，并回归掉包括6个头动参数在内的多种滋扰协变量。</li>
+<li><strong>被试排除</strong>：在主要分析中排除了头动过大的被试。</li>
+<li><strong>敏感性分析</strong>：选取了一个头动更小（FD &lt; 0.2 mm, N &#x3D; 13,490）的UKB子集进行PRS引导的融合分析，结果显示先前识别的PRS相关模式（额颞叶和丘脑的fALFF，以及丘脑、海马、海马旁回和颞叶的GMV）在该低头动子集中得到了复制。</li>
+<li><strong>其他证据</strong>：精神分裂症组(SZ)与健康对照组(HC)在头动上无显著差异；平均头动(mean FD)与PRS之间无显著相关性；在回归掉平均头动后，已识别成分与PRS之间的偏相关依然显著。</li>
+<li><strong>分析方法选择</strong>：当前融合分析基于对头动相对不敏感的fALFF，而非对头动更敏感的功能连接。</li>
+<li><strong>重要前提</strong>：在最初的融合分析前，平均头动也已从fALFF&#x2F;GMV特征矩阵中被回归剔除。</li>
+</ul>
+</li>
+<li><strong>结论</strong>：研究者认为微小的头动不是影响当前研究结果的主要因素。</li>
+</ul>
+</li>
+<li><strong>智商效应 (IQ effects)：</strong><ul>
+<li>PRS与IQ之间的直接相关性仅为边缘显著（p &#x3D; e−05，未经FDR校正）。</li>
+<li>在回归掉IQ的影响后，得到的PRS相关模式与原始的PRS模式几乎相同。</li>
+<li><strong>结论</strong>：IQ不是影响所识别PRS模式的主要混杂因素。</li>
+</ul>
+</li>
+</ol>
+<p><strong>总而言之，这段文字表明，研究者通过一系列严格的检验和控制，认为他们所识别的PRS相关脑模式对于MRI扫描地点、头动以及智商这些潜在的混杂因素是稳健的，这些因素并未对主要研究结果构成显著影响。</strong></p>
+<h3 id="Group-differences-of-PRS-pattern-between-SZ-and-HC"><a href="#Group-differences-of-PRS-pattern-between-SZ-and-HC" class="headerlink" title="Group differences of PRS-pattern between SZ and HC"></a>Group differences of PRS-pattern between SZ and HC</h3><p>这段描述了研究者如何比较先前识别的<strong>PRS（多基因风险评分）相关脑模式</strong>在精神分裂症患者 (SZ) 和健康对照组 (HC) 之间的差异。</p>
+<p>主要步骤和结果如下：</p>
+<ol>
+<li><p><strong>提取PRS相关脑模式特征：</strong></p>
+<ul>
+<li>研究者将先前识别的与PRS相关的fALFF（低频振幅分数）和GMV（灰质体积）成分，根据其Z值脑图谱，分成了“正相关网络”（Z &gt; 0的部分）和“负相关网络”（Z &lt; 0的部分）<em>“掩模”(mask) 或“感兴趣区域”(Region of Interest, ROI)</em>。</li>
+<li>通过<strong>计算这些网络内fALFF或GMV的平均值</strong>，得到了四个与PRS相关的脑特征：fALFF_positive (fALFF正相关网络均值), fALFF_negative (fALFF负相关网络均值), GMV_positive (GMV正相关网络均值), 和 GMV_negative (GMV负相关网络均值)。</li>
+</ul>
+<img src="../image/MCCAR_jICA/image-20250521155020394.png" srcset="/img/loading.gif" lazyload alt="The diagnostic ability of the identified PRS-associated frontal-temporal network." style="zoom: 67%;" />
+</li>
+<li><p><strong>比较SZ和HC之间的组间差异：</strong></p>
+<ul>
+<li>使用双样本t检验来评估这四个PRS相关脑特征在SZ患者和HC之间的差异。</li>
+<li><strong>结果显示</strong>：在fMRI的正相关和负相关网络中，以及在sMRI的正相关和负相关网络中，精神分裂症患者的fALFF值和GMV值均<strong>持续显著低于</strong>健康对照组。</li>
+<li>这一发现在<strong>四个独立的研究队列</strong>中都得到了验证，这些队列包括：BSNIP-1、COBRE、fBIRN和MPRC。</li>
+</ul>
+</li>
+</ol>
+<p><strong>总结来说，研究者将先前发现的与遗传风险相关的多模态脑模式分解为四个具体的量化特征。通过比较这些特征，他们发现在四个不同的精神分裂症患者队列中，患者在所有这四个PRS相关脑特征上的值都一致且显著地低于健康对照组。这表明该PRS相关脑模式在精神分裂症患者中表现出普遍性的减弱。</strong></p>
+<h3 id="Classification-between-SZ-and-HC"><a href="#Classification-between-SZ-and-HC" class="headerlink" title="Classification between SZ and HC"></a>Classification between SZ and HC</h3><p>该研究通过使用线性支持向量机 (SVM) 方法，验证了先前识别的与精神分裂症多基因风险评分 (PRS) 相关脑网络的分类能力，用以区分精神分裂症 (SZ) 患者和健康对照组 (HC) 。</p>
+<p>在分类特征的选择上，除了使用在PRS相关网络（fALFF&#x2F;GMV的阳性和阴性网络）中提取的平均fALFF&#x2F;GMV值外，研究者还纳入了在这些已识别PRS网络内分解fALFF&#x2F;GMV阳性&#x2F;阴性特征矩阵得到的<strong>前5个主成分 (PC)</strong> 。每个PRS相关网络因此产生6个特征（1个平均值 + 5个PC），总共形成了<strong>24个特征</strong>用于每个HC-SZ队列的分类 。加入PC的理由是前5个PC能够捕获PRS相关感兴趣区域 (ROI) 中99%的方差，而平均值仅能代表不到50%的方差 。</p>
+<p><strong>分类结果显示</strong>，这些PRS相关特征在4个独立的SZ队列（BSNIP-1, COBRE, fBIRN, MPRC）中均能稳定地分类SZ和HC，准确率超过83%，AUC值超过0.9 。具体表现为：BSNIP-1队列准确率85.2%，AUC为0.95；COBRE队列准确率83.7%，AUC为0.90；fBIRN队列准确率89.9%，AUC为0.96；MPRC队列准确率84.4%，AUC为0.94 。研究还发现，**第一个PC对分类的贡献最大，其次是平均值，这表明了在分类中加入额外5个PC的必要性 。**重要的是，这5个PC是从已识别的PRS相关ROI中提取的，而非全脑数据 。</p>
+<p>为了证实分类结果的特异性，研究者使用了“无效模式”（null pattern）进行对比。结果显示，无效模式在SZ和HC之间既没有表现出组间差异，也没有区分SZ患者的能力 。这些结果证明了所识别的PRS模式在区分SZ和HC方面的特异性 。</p>
+<p>此外，研究还评估了不同研究中心（site）作为潜在混杂因素的影响。当将不同中心视为分类目标时，分类准确率接近50%（随机水平），这表明研究中心并非当前SZ-HC分类分析中的主要混杂因素 。</p>
+<h3 id="Prediction-of-cognition-and-symptom-for-SZ"><a href="#Prediction-of-cognition-and-symptom-for-SZ" class="headerlink" title="Prediction of cognition and symptom for SZ"></a>Prediction of cognition and symptom for SZ</h3><p>该研究进一步探讨了先前识别的<strong>四种平均PRS（多基因风险评分）相关脑特征</strong>对精神分裂症 (SZ) 患者认知和症状的预测能力 。研究人员使用COBRE队列的数据为每个认知和症状领域构建了多元线性回归模型 。随后，这些<strong>在COBRE队列上训练好的模型和相同的感兴趣区域 (ROI) 被用于预测fBIRN和BSNIP队列中SZ患者的认知及症状指标，以评估模型的泛化能力</strong> 。</p>
+<p><img src="/../image/MCCAR_jICA/image-20250521160551556.png" srcset="/img/loading.gif" lazyload alt="多元线性回归模型"></p>
+<p>预测性能通过计算预测值与真实值之间的相关性来评估 。结果显示，这四种PRS相关脑特征成功地预测了所有三个独立SZ队列（COBRE、BSNIP-1、fBIRN）中的注意力、工作记忆、综合认知得分以及PANSS（阳性与阴性症状量表）阴性症状得分 。</p>
+<p><img src="/../image/MCCAR_jICA/image-20250521160638883.png" srcset="/img/loading.gif" lazyload alt="Prediction results for cognition and symptom across BSNIP-1, fBIRN and COBRE based on the identified PRS-associated features."></p>
+<p>具体的Pearson相关系数 (r) 如下：</p>
+<ul>
+<li>COBRE队列：综合认知r&#x3D;0.54，注意力r&#x3D;0.52，工作记忆r&#x3D;0.53，PANSS阴性症状r&#x3D;0.48 。</li>
+<li>BSNIP-1队列：综合认知r&#x3D;0.44，注意力r&#x3D;0.49，工作记忆r&#x3D;0.52，PANSS阴性症状r&#x3D;0.49 。</li>
+<li>fBIRN队列：综合认知r&#x3D;0.51，注意力r&#x3D;0.44，工作记忆r&#x3D;0.55，PANSS阴性症状r&#x3D;0.51 。</li>
+</ul>
+<p>MPRC队列因为缺乏相关的症状和认知数据，未被纳入此次预测分析 。值得注意的是，尽管三个队列使用了不同的认知评估工具（BSNIP-1使用BACS；fBIRN使用CMINDS；COBRE使用MCCB），这些PRS相关特征仍然显示出预测能力 。</p>
+<h3 id="Specificity-of-PRS-pattern-among-psychosis-and-their-relatives"><a href="#Specificity-of-PRS-pattern-among-psychosis-and-their-relatives" class="headerlink" title="Specificity of PRS pattern among psychosis and their relatives"></a>Specificity of PRS pattern among psychosis and their relatives</h3><p>为了检验先前识别的PRS（多基因风险评分）衍生脑模式是否也存在于其他精神病性障碍中，研究人员在BSNIP-1队列中，比较了精神分裂症 (SZ, N&#x3D;178)、分裂情感性障碍 (SAD, N&#x3D;134)、精神病性双相障碍 (BP, N&#x3D;143)、健康对照组 (HC, N&#x3D;220) 以及这三类患者的一级亲属（分别为SZR, N&#x3D;162; SADR, N&#x3D;149; BPR, N&#x3D;142）之间四种PRS相关脑特征（fALFF正&#x2F;负网络，GMV正&#x2F;负网络）的差异 。所有比较在校正了地点效应后进行 。</p>
+<img src="../image/MCCAR_jICA/image-20250521161256174.png" srcset="/img/loading.gif" lazyload alt="Group differences of the identified PRS-associated pattern within psychosis." style="zoom:50%;" />
+
+<p>结果显示：</p>
+<ul>
+<li>对于fALFF（功能磁共振成像特征），精神病性障碍患者组（SZ、SAD、BP）及其亲属组（SZR、SADR、BPR）在正相关和负相关网络中的fALFF值均低于健康对照组（HC） 。</li>
+<li>对于sMRI（结构磁共振成像特征），与健康对照组（HC）相比，精神分裂症患者（SZ）和分裂情感性障碍患者的亲属（SADR）在正相关和负相关网络中的灰质体积（GMV）均显著减少 。</li>
+</ul>
+<h3 id="Specificity-of-PRS-pattern-among-SZ-ASD-MDD-and-ADHD"><a href="#Specificity-of-PRS-pattern-among-SZ-ASD-MDD-and-ADHD" class="headerlink" title="Specificity of PRS pattern among SZ, ASD, MDD, and ADHD"></a>Specificity of PRS pattern among SZ, ASD, MDD, and ADHD</h3><p>为了进一步检验已识别的PRS（多基因风险评分）相关脑特征的特异性，研究人员还通过双样本t检验，测试了这些特征在区分其他神经精神&#x2F;心境障碍患者与健康对照组（HC）的能力 。</p>
+<img src="../image/MCCAR_jICA/image-20250521161654398.png" srcset="/img/loading.gif" lazyload alt="Group differences of the positive and negative PRS-associated networks between SZ and HC, between ASD and HC, between MDD and HC, between ADHD and HC." style="zoom:50%;" />
+
+<p>结果表明，对于患有自闭症谱系障碍（ASD, N&#x3D;421）、重度抑郁症（MDD, N&#x3D;260）和注意力缺陷&#x2F;多动障碍（ADHD, N&#x3D;346）的个体，他们所表现出的PRS相关额颞叶模式与其各自队列中的健康对照组相比，并无显著差异 。然而，该模式仅在精神分裂症（SZ）患者中显示出显著降低 。</p>
+<p>文中还提到，关于SZ、ASD、MDD和ADHD之间的直接比较（通过方差分析ANOVA进行）可以在补充图17中找到 。</p>
+<h2 id="方法与材料"><a href="#方法与材料" class="headerlink" title="方法与材料"></a>方法与材料</h2><h3 id="The-discovery-UKB-cohort"><a href="#The-discovery-UKB-cohort" class="headerlink" title="The discovery UKB cohort"></a>The discovery UKB cohort</h3><h2 id="疑惑"><a href="#疑惑" class="headerlink" title="疑惑"></a>疑惑</h2><h3 id="1-文章里面对于获取的脑模式有两种处理方式，一种是进行线性投射求Loading，另一种是求mask求平均值，为什么要这样处理？"><a href="#1-文章里面对于获取的脑模式有两种处理方式，一种是进行线性投射求Loading，另一种是求mask求平均值，为什么要这样处理？" class="headerlink" title="1. 文章里面对于获取的脑模式有两种处理方式，一种是进行线性投射求Loading，另一种是求mask求平均值，为什么要这样处理？"></a>1. 文章里面对于获取的脑模式有两种处理方式，一种是进行线性投射求Loading，另一种是求mask求平均值，为什么要这样处理？</h3><p>在神经影像分析中，选择使用“线性投影求loading”还是“直接用mask求平均值”取决于研究的具体目的和分析阶段。这两种方法有不同的应用场景和依据：</p>
+<ol>
+<li><strong>线性投影求Loading (成分载荷&#x2F;权重)：</strong><ul>
+<li>目的：<ul>
+<li>验证或复制一个已识别的复杂空间模式（component&#x2F;network map）在另一个独立样本中的表达强度，并考察这种表达强度是否与某个变量（如PRS）相关。</li>
+<li>当研究者通过数据驱动的方法（如独立成分分析ICA、主成分分析PCA或文中的融合分析）识别出一个包含多个脑区、具有特定空间分布的脑网络或模式时，这个模式是一个整体。</li>
+<li>为了在新的被试数据中量化这个“整体模式”的强度或“存在感”，就需要将这个已知的空间模式（通常是一个权重向量或图谱）“投影”到新被试的脑影像数据上。</li>
+</ul>
+</li>
+<li><strong>方法</strong>：线性投影通常是通过计算新被试的脑影像数据（例如，一个向量化的全脑fALFF图）与已识别的空间模式图谱之间的点积（dot product）或其他类似的线性组合。结果得到一个单一的数值，即“loading”或“成分得分”，代表该被试在多大程度上表现出这个特定的空间模式。</li>
+<li>依据&#x2F;优势：<ul>
+<li>能够捕捉整个复杂空间模式的综合信息，而不仅仅是单个区域。</li>
+<li>适用于检验一个先前发现的、由多个区域共同构成的功能或结构模式是否在新的数据中稳定存在，并与特定指标相关。</li>
+<li>在文中，当他们将在UKB健康人群中识别的“PRS空间图谱”应用到独立的精神分裂症(SZ)患者队列中，并考察其与PRS的相关性时，就使用了线性投影来获得每个SZ患者在该PRS相关模式上的loading值 。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>用Mask求区域平均值：</strong><ul>
+<li>目的：<ul>
+<li>比较不同组别（如SZ vs. HC）在与PRS模式相关的特定脑区（由该模式定义）内的平均脑活动或结构是否存在差异。</li>
+<li>提取简化的、具有生物学意义的特征用于分类或预测模型。</li>
+</ul>
+</li>
+<li>方法：<ul>
+<li>首先，基于先前识别的PRS相关脑模式图谱（通常是Z值图谱），通过设定阈值（如Z&gt;0为正相关网络，Z&lt;0为负相关网络）来创建二值化或多值的“掩模”（mask）或“感兴趣区域”（ROI） 。这些掩模定义了具体的脑区范围。</li>
+<li>然后，对于每一个被试，计算其脑影像数据（如fALFF图或GMV图）在这些预先定义的掩模区域内的信号平均值 。</li>
+</ul>
+</li>
+<li>依据&#x2F;优势：<ul>
+<li>简化数据和提高解释性：将复杂的全脑模式简化为少数几个关键区域的平均信号，更易于进行组间比较和生物学解释。例如，可以直接说“SZ患者在PRS正相关网络的平均fALFF值显著低于HC” 。</li>
+<li>降低特征维度：对于分类和预测任务，使用少数几个区域的平均值作为特征，可以有效降低模型的复杂性，减少过拟合的风险，并可能提高模型的泛化能力 。文中明确提到，提取了4个PRS相关的脑特征（fALFF_positive, fALFF_negative, GMV_positive, GMV_negative）用于后续的组间比较、分类和预测分析 。</li>
+<li><strong>特异性分析</strong>：允许研究者更细致地考察模式中不同部分（如正相关部分和负相关部分）的效应。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>总结与依据选择：</strong></p>
+<ul>
+<li><strong>当需要评估一个复杂的、数据驱动发现的整体脑模式在个体中的表达强度，并将其与外部变量关联时（尤其是在验证&#x2F;复制阶段）</strong>，倾向于使用“线性投影求loading”。这能反映个体对整个模式的“贡献”或“符合程度”。</li>
+<li><strong>当需要进行组间比较，或者为机器学习模型（分类、预测）提取更稳定、更易解释、维度更低的特征时，且这些特征应基于先前发现的模式所指示的关键区域时</strong>，倾向于使用“mask求区域平均值”。这种方法将关注点从整个模式的抽象表达转移到模式中具体解剖或功能区域的量化指标上。</li>
+</ul>
+<p>研究者会根据研究的不同阶段和具体科学问题来选择合适的方法。在本文中，两种方法都被恰当地用于回答不同的研究问题：线性投影用于验证PRS与脑模式的<strong>关联</strong>在患者中的可重复性 ；而基于mask的区域平均值则用于更细致地比较SZ与HC在这些PRS定义区域的<strong>差异</strong> ，并作为<strong>特征</strong>进行分类和预测 。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" class="category-chain-item">论文阅读</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8E%9F%E5%88%9B/" class="print-no-link">#原创</a>
+      
+        <a href="/tags/PRS/" class="print-no-link">#PRS</a>
+      
+        <a href="/tags/UKB/" class="print-no-link">#UKB</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>精神分裂症多基因风险相关多模态MRI额颞叶网络的推导和应用</div>
+      <div>https://xingdayup.github.io/2025/05/21/MCCAR_jICA/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>Jesse Chen</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>May 21, 2025</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/05/11/HumanMitoBrainMap/" title="【论文阅读】人类大脑线粒体呼吸能力与多样性图谱">
+                        <span class="hidden-mobile">【论文阅读】人类大脑线粒体呼吸能力与多样性图谱</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"vdZLnTIdTwJmBWlW8LgSqJcp-gzGzoHsz","appKey":"SraJp3AuS35E7IyflZgQqEt2","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
